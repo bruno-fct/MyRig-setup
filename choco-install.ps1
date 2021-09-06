@@ -11,7 +11,7 @@ ECHO Installing Chocolatey apps
 # DEV
 choco install vscode
 choco install nodejs.install
-choco install github 
+choco install git
 
 # DEVOPS
 choco install filezilla 
