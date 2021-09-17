@@ -65,3 +65,6 @@ Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Ser
 
 ECHO "Installing WSL Ubuntu v20"
 wsl --install -d Ubuntu-20.04
+
+ECHO "Restarting to apply changes"
+shutdown -s -t 120
