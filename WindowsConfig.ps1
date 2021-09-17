@@ -48,7 +48,7 @@ Remove-AppxPackage "Microsoft.WindowsFeedbackHub"
 ECHO "Configuring Windows"
 ECHO "Configuring Power Plan"
 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
-$p = gwmi -NS root\cimv2\power -Class win32_PowerPlan -Filter “ElementName =’Power Saver'”
+$p = gwmi -NS root\cimv2\power -Class win32_PowerPlan -Filter "ElementName ='Power Saver'"
 $p.Activate()
 
 ECHO "Configuring Proxy, Taskbar and UAC"
