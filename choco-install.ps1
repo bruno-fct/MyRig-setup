@@ -3,10 +3,10 @@
 
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
-ECHO Configure chocolatey
+ECHO "Configure chocolatey"
 choco feature enable -n allowGlobalConfirmation
 
-ECHO Installing Chocolatey apps
+ECHO "Installing Chocolatey apps"
 
 # DEV
 choco install vscode
@@ -36,24 +36,24 @@ choco install microsoft-teams
 
 choco feature disable -n allowGlobalConfirmation
 
-ECHO Installing Windows Store Apps
+ECHO "Installing Windows Store Apps"
 Add-AppxPackage "19282JackieLiu.Notepads-Beta"
 Add-AppxPackage "Microsoft.WindowsTerminal"
 
-ECHO Removing Windows Store Apps
+ECHO "Removing Windows Store Apps"
 Remove-AppxPackage "Microsoft.ZuneMusic"
 Remove-AppxPackage "Microsoft.MicrosoftSolitaireCollection"
 Remove-AppxPackage "Microsoft.Office.OneNote"
 Remove-AppxPackage "Microsoft.MicrosoftOfficeHub"
 Remove-AppxPackage "Microsoft.WindowsFeedbackHub"
 
-ECHO Configuring Windows
-ECHO Configuring Power Plan
+ECHO "Configuring Windows"
+ECHO "Configuring Power Plan"
 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
 $p = gwmi -NS root\cimv2\power -Class win32_PowerPlan -Filter “ElementName =’Power Saver'”
 $p.Activate()
 
-ECHO Configuring Proxy, Taskbar and UAC
+ECHO "Configuring Proxy, Taskbar and UAC"
 Disable-NetProxy
 Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin -Value 0
 Set-ItemProperty -Path REGISTRY::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search - Name SearchboxTaskbar -Value 0
@@ -62,8 +62,8 @@ Set-ItemProperty -Path REGISTRY::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\Cu
 Set-ItemProperty -Path REGISTRY::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Feeds - Name ShellFeedsTaskbarViewMode -Value 2
 New-ItemProperty -Path REGISTRY::HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies - Name HideSCAMeetNow -Value 1
 
-ECHO Configuring Windows Update
+ECHO "Configuring Windows Update"
 Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc -Name Start -Value 4
 
-ECHO Installing WSL Ubuntu v20
+ECHO "Installing WSL Ubuntu v20"
 wsl --install -d Ubuntu-20.04
